@@ -14,7 +14,7 @@ build:
     - pyclean = pyclean.cli:main
   noarch: python
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
-  number: 2
+  number: 3
 
 requirements:
   host:
@@ -43,13 +43,13 @@ about:
     PyClean is here to help. Finally the single-command clean up for Python
     bytecode files in your favorite directories. On any platform.
 
-    <p>
     ```shell
     pyclean .
     pyclean . --dry-run --verbose
     pyclean --help
     ```
-    </p>
+
+    ### Clean up debris
 
     PyClean can clean up leftovers, generated data and temporary files from
     popular Python development tools in their default locations, along with
@@ -65,12 +65,12 @@ about:
     - Mypy (mypy cache folder) – _optional_
     - Tox (tox environments) – _optional_
 
-    <p>
     ```shell
     pyclean . --debris
     pyclean . -d jupyter -n -v
     ```
-    </p>
+
+    ### Remove arbitrary file system objects
 
     PyClean also lets you remove free-form targets using globbing. Note that
     this is potentially dangerous: You can delete everything anywhere in the
@@ -85,32 +85,28 @@ about:
     - You’re prompted interactively to confirm deletion, unless you specify
       the `--yes` option, in addition.
 
-    <p>
     ```shell
     pyclean . --erase tmp/**/* tmp/
     ```
-    </p>
+
+    ### Use pyclean with Tox
 
     If you want to avoid installing `pyclean` you can add it to your
     `tox.ini` as a new environment.
 
-    <p>
     ```ini
     (testenv:clean)
     skip_install = true
     deps = pyclean
     commands = pyclean {posargs:. --debris}
     ```
-    </p>
 
     You’ll then be able to run it with [Tox](https://tox.wiki/) like this:
 
-    <p>
     ```shell
     tox -e clean
     ```
-    </p>
-  doc_url: https://pypi.org/project/pyclean/
+  doc_url: https://pypi.org/project/pyclean
 
 extra:
   recipe-maintainers:
