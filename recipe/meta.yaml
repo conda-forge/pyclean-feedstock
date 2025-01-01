@@ -6,7 +6,7 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/pyclean-{{ version }}.tar.gz
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/pyclean-{{ version }}.tar.gz
   sha256: a48be7afd512b1923a7b9decc1219bbbe2d73199c939b46c936448f904a180ce
 
 build:
@@ -14,15 +14,15 @@ build:
     - pyclean = pyclean.cli:main
   noarch: python
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
-  number: 3
+  number: 4
 
 requirements:
   host:
-    - python >=3.5
+    - python {{ python_min }}
     - setuptools >=44
     - pip
   run:
-    - python >=3.5
+    - python >={{ python_min }}
 
 test:
   imports:
@@ -32,6 +32,7 @@ test:
     - pyclean --help
   requires:
     - pip
+    - python {{ python_min }}
 
 about:
   home: https://github.com/bittner/pyclean
