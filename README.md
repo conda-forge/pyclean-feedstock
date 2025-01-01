@@ -9,6 +9,77 @@ Package license: GPL-3.0-or-later
 
 Summary: Pure Python cross-platform pyclean. Clean up your Python bytecode.
 
+Documentation: https://pypi.org/project/pyclean
+
+Worried about `.pyc` files and `__pycache__` directories? Fear not!
+PyClean is here to help. Finally the single-command clean up for Python
+bytecode files in your favorite directories. On any platform.
+
+```shell
+pyclean .
+pyclean . --dry-run --verbose
+pyclean --help
+```
+
+
+
+PyClean can clean up leftovers, generated data and temporary files from
+popular Python development tools in their default locations, along with
+Python bytecode. The following topics are currently covered:
+
+- Cache (general purpose folder for several tools, e.g. Python eggs,
+  legacy Pytest)
+- Coverage (coverage database, and supported file formats)
+- Packaging (build files and folders)
+- Pytest (build files and folders)
+- Ruff (ruff cache folder)
+- Jupyter (notebook checkpoints) – _optional_
+- Mypy (mypy cache folder) – _optional_
+- Tox (tox environments) – _optional_
+
+```shell
+pyclean . --debris
+pyclean . -d jupyter -n -v
+```
+
+
+
+PyClean also lets you remove free-form targets using globbing. Note that
+this is potentially dangerous: You can delete everything anywhere in the
+file system, including the entire project you’re working on. For this
+reason, the `--erase` option has a few artificial constraints:
+
+- It doesn’t do recursive deletion by itself, which means that you have
+  to specify the directory and its contents, separately and explicitly.
+- The above entails that you’re responsible for the deletion order,
+  i.e. removal of a directory will only work if you asked to delete all
+  files inside first.
+- You’re prompted interactively to confirm deletion, unless you specify
+  the `--yes` option, in addition.
+
+```shell
+pyclean . --erase tmp/**/* tmp/
+```
+
+
+
+If you want to avoid installing `pyclean` you can add it to your
+`tox.ini` as a new environment.
+
+```ini
+(testenv:clean)
+skip_install = true
+deps = pyclean
+commands = pyclean {posargs:. --debris}
+```
+
+You’ll then be able to run it with [Tox](https://tox.wiki/) like this:
+
+```shell
+tox -e clean
+```
+
+
 Current build status
 ====================
 
