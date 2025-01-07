@@ -21,7 +21,7 @@ pyclean . --dry-run --verbose
 pyclean --help
 ```
 
-
+### Clean up debris
 
 PyClean can clean up leftovers, generated data and temporary files from
 popular Python development tools in their default locations, along with
@@ -42,7 +42,7 @@ pyclean . --debris
 pyclean . -d jupyter -n -v
 ```
 
-
+### Remove arbitrary file system objects
 
 PyClean also lets you remove free-form targets using globbing. Note that
 this is potentially dangerous: You can delete everything anywhere in the
@@ -61,13 +61,13 @@ reason, the `--erase` option has a few artificial constraints:
 pyclean . --erase tmp/**/* tmp/
 ```
 
-
+### Use pyclean with Tox
 
 If you want to avoid installing `pyclean` you can add it to your
 `tox.ini` as a new environment.
 
 ```ini
-(testenv:clean)
+[testenv:clean]
 skip_install = true
 deps = pyclean
 commands = pyclean {posargs:. --debris}
