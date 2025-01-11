@@ -15,7 +15,7 @@ Worried about `.pyc` files and `__pycache__` directories? Fear not!
 PyClean is here to help. Finally the single-command clean up for Python
 bytecode files in your favorite directories. On any platform.
 
-### Usage
+
 
 ```shell
 pyclean .
@@ -23,7 +23,7 @@ pyclean . --dry-run --verbose
 pyclean --help
 ```
 
-### Clean up debris
+
 
 PyClean can clean up leftovers, generated data and temporary files from
 popular Python development tools in their default locations, along with
@@ -45,7 +45,7 @@ pyclean . --debris all
 pyclean . -d jupyter -n -v
 ```
 
-### Remove arbitrary file system objects
+
 
 PyClean also lets you remove free-form targets using globbing. Note that
 this is potentially dangerous: You can delete everything anywhere in the
@@ -63,6 +63,7 @@ reason, the `--erase` option has a few artificial constraints:
 ```shell
 pyclean . --erase tmp/**/* tmp/
 ```
+
 
 Current build status
 ====================
@@ -199,3 +200,4 @@ Feedstock Maintainers
 =====================
 
 * [@bittner](https://github.com/bittner/)
+
