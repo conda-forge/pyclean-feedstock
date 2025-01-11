@@ -15,6 +15,8 @@ Worried about `.pyc` files and `__pycache__` directories? Fear not!
 PyClean is here to help. Finally the single-command clean up for Python
 bytecode files in your favorite directories. On any platform.
 
+### Usage
+
 ```shell
 pyclean .
 pyclean . --dry-run --verbose
@@ -39,6 +41,7 @@ Python bytecode. The following topics are currently covered:
 
 ```shell
 pyclean . --debris
+pyclean . --debris all
 pyclean . -d jupyter -n -v
 ```
 
@@ -60,25 +63,6 @@ reason, the `--erase` option has a few artificial constraints:
 ```shell
 pyclean . --erase tmp/**/* tmp/
 ```
-
-### Use pyclean with Tox
-
-If you want to avoid installing `pyclean` you can add it to your
-`tox.ini` as a new environment.
-
-```ini
-[testenv:clean]
-skip_install = true
-deps = pyclean
-commands = pyclean {posargs:. --debris}
-```
-
-You’ll then be able to run it with [Tox](https://tox.wiki/) like this:
-
-```shell
-tox -e clean
-```
-
 
 Current build status
 ====================
@@ -215,4 +199,3 @@ Feedstock Maintainers
 =====================
 
 * [@bittner](https://github.com/bittner/)
-
