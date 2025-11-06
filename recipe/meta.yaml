@@ -1,5 +1,5 @@
 {% set name = "pyclean" %}
-{% set version = "3.3.0" %}
+{% set version = "3.4.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/pyclean-{{ version }}.tar.gz
-  sha256: ecd109522a0a19c6e0c7c3a46716077e2188764be5d7af6fb76f367ccd646932
+  sha256: e4c25c343c6b4a42d9cb177256415a6c539f2f6ad1fa1f1763f911e465136d35
 
 build:
   entry_points:
@@ -94,6 +94,15 @@ about:
     pyclean . --erase tmp/**/* tmp/
     ```
 
+    ### Empty directories
+
+    PyClean can safely detect and remove empty directories that are left in
+    your project after refactoring code.
+
+    ```shell
+    pyclean . --folders --verbose
+    ```
+
     ### Git-clean integration
 
     PyClean integrates with Git's `git clean` command to remove untracked
@@ -105,8 +114,8 @@ about:
     prompts. The `--ignore` patterns are honored as exclusions.
 
     ```shell
-    pyclean . --git-clean --dry-run
-    pyclean . --debris --git-clean --yes
+    pyclean . --debris all --git-clean --dry-run
+    pyclean . --ignore .idea .vscode --git-clean --yes
     ```
 
     **Note:** Git must be installed for this feature. If a directory is not

@@ -15,15 +15,11 @@ Worried about `.pyc` files and `__pycache__` directories? Fear not!
 PyClean is here to help. Finally the single-command clean up for Python
 bytecode files in your favorite directories. On any platform.
 
-
-
 ```shell
 pyclean .
 pyclean . --dry-run --verbose
 pyclean --help
 ```
-
-
 
 PyClean can clean up leftovers, generated data and temporary files from
 popular Python development tools in their default locations, along with
@@ -37,6 +33,7 @@ Python bytecode. The following topics are currently covered:
 - Ruff (ruff cache folder)
 - Jupyter (notebook checkpoints) – _optional_
 - Mypy (mypy cache folder) – _optional_
+- Pyright (pyright app cache folder) – _optional_
 - Tox (tox environments) – _optional_
 
 ```shell
@@ -44,8 +41,6 @@ pyclean . --debris
 pyclean . --debris all
 pyclean . -d jupyter -n -v
 ```
-
-
 
 PyClean also lets you remove free-form targets using globbing. Note that
 this is potentially dangerous: You can delete everything anywhere in the
@@ -64,10 +59,31 @@ reason, the `--erase` option has a few artificial constraints:
 pyclean . --erase tmp/**/* tmp/
 ```
 
+PyClean can safely detect and remove empty directories that are left in
+your project after refactoring code.
+
+```shell
+pyclean . --folders --verbose
+```
+
+PyClean integrates with Git's `git clean` command to remove untracked
+files from version-controlled directories. The `--git-clean` (or `-g`)
+flag runs after all other cleanup operations.
+
+By default, Git prompts interactively to confirm which files to delete.
+Use `--dry-run` to preview, or `--yes` to force deletion without
+prompts. The `--ignore` patterns are honored as exclusions.
+
+```shell
+pyclean . --debris all --git-clean --dry-run
+pyclean . --ignore .idea .vscode --git-clean --yes
+```
+
+**Note:** Git must be installed for this feature. If a directory is not
+under version control, a warning is logged and pyclean continues.
 
 Current build status
 ====================
-
 
 <table><tr><td>All platforms:</td>
     <td>
@@ -107,7 +123,7 @@ or with `mamba`:
 mamba install pyclean
 ```
 
-It is possible to list all of the versions of `pyclean` available on your platform with `conda`:
+It is possible to list all the versions of `pyclean` available on your platform with `conda`:
 
 ```
 conda search pyclean --channel conda-forge
@@ -131,7 +147,6 @@ mamba repoquery whoneeds pyclean --channel conda-forge
 # List dependencies of `pyclean`:
 mamba repoquery depends pyclean --channel conda-forge
 ```
-
 
 About conda-forge
 =================
@@ -173,7 +188,6 @@ Terminology
 **conda-forge** - the place where the feedstock and smithy live and work to
                   produce the finished article (built conda distributions)
 
-
 Updating pyclean-feedstock
 ==========================
 
@@ -200,4 +214,3 @@ Feedstock Maintainers
 =====================
 
 * [@bittner](https://github.com/bittner/)
-
