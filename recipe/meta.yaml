@@ -1,5 +1,5 @@
 {% set name = "pyclean" %}
-{% set version = "3.4.0" %}
+{% set version = "3.5.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/pyclean-{{ version }}.tar.gz
-  sha256: e4c25c343c6b4a42d9cb177256415a6c539f2f6ad1fa1f1763f911e465136d35
+  sha256: 6033b7cb728fbdacc5912dc72e09baee76aeef328430f3e9ccb1a78def4fbfd4
 
 build:
   entry_points:
@@ -64,6 +64,7 @@ about:
     - Packaging (build files and folders)
     - Pytest (build files and folders)
     - Ruff (ruff cache folder)
+    - Complexipy (complexity analysis of Python code) – _optional_
     - Jupyter (notebook checkpoints) – _optional_
     - Mypy (mypy cache folder) – _optional_
     - Pyright (pyright app cache folder) – _optional_
@@ -75,7 +76,7 @@ about:
     pyclean . -d jupyter -n -v
     ```
 
-    ### Remove arbitrary file system objects
+    ### Abitrary file system objects
 
     PyClean also lets you remove free-form targets using globbing. Note that
     this is potentially dangerous: You can delete everything anywhere in the
