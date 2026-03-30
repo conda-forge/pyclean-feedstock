@@ -1,5 +1,5 @@
 {% set name = "pyclean" %}
-{% set version = "3.5.0" %}
+{% set version = "3.6.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/pyclean-{{ version }}.tar.gz
-  sha256: 6033b7cb728fbdacc5912dc72e09baee76aeef328430f3e9ccb1a78def4fbfd4
+  sha256: a46c179be187999d50d2d3362b2c94856e60f77de32ca7ec2db4eeb16bc39199
 
 build:
   entry_points:
